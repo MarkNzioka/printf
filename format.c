@@ -1,5 +1,63 @@
 #include "main.h"
 /**
+ * handle_char - handle the %c specifier
+ * @args: va_list of arguments
+ * @count: pointer to char
+ */
+void handle_char(va_list args, int *count)
+{
+	char c = (char)va_arg(args, int);
+
+	putchar(c);
+	(*count)++;
+}
+/**
+ * handle_string - handle the %s specifier
+ * @args: va_list of arguments
+ * @count: pointer to char
+ */
+void handle_string(va_list args, int *count)
+{
+	char *str = va_arg(args, char *);
+
+	if (str == NULL)
+	{
+		fputs("(null)", stdout);
+		*count += 6;
+	}
+	else
+	{
+		if (*str)
+		{
+			putchar(*str);
+			str++;
+			(*count)++;
+		}
+	}
+}
+/**
+ * handle_percent - handle the %& specifier
+ * @args: va_list of arguments
+ * @count: pointer to char
+ */
+void handle_percent(int *count)
+{
+	putchar('%');
+	(*count)++;
+}
+/**
+ * handle_unknown - handle unknown specifier
+ * @args: va_list of arguments
+ * @count: pointer to char
+ * @modifier: unrecognized modifier character
+ */
+void handle_unknown(const char modifier, int *count)
+{
+	putchar('%');
+	putchar(modifier);
+	*count += 2;
+}
+/**
  *_printf - function for printf
  *@format:format.
  *Return:count.
@@ -8,9 +66,9 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count = 0;
-	char c;
-	char *str;
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
 
 	while (*format)
@@ -21,34 +79,16 @@ int _printf(const char *format, ...)
 
 			if (*format == '\0')
 				break;
-
+			if (*format == ' ')
+				return (-1);
 			if (*format == 'c')
-			{
-				c = (char)va_arg(args, int);
-				putchar(c);
-				count++;
-			}
+				handle_char(args, &count);
 			else if (*format == 's')
-			{
-				str = va_arg(args, char *);
-				while (*str)
-				{
-					putchar(*str);
-					str++;
-					count++;
-				}
-			}
+				handle_string(args, &count);
 			else if (*format == '%')
-			{
-				putchar('%');
-				count++;
-			}
+				handle_percent(&count);
 			else
-			{
-				putchar('%');
-				putchar(*format);
-				count += 2;
-			}
+				handle_unknown(*format, &count);
 		}
 		else
 		{
