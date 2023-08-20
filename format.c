@@ -27,7 +27,7 @@ void handle_string(va_list args, int *count)
 	}
 	else
 	{
-		if (*str)
+		while (*str)
 		{
 			putchar(*str);
 			str++;
@@ -37,7 +37,6 @@ void handle_string(va_list args, int *count)
 }
 /**
  * handle_percent - handle the %& specifier
- * @args: va_list of arguments
  * @count: pointer to char
  */
 void handle_percent(int *count)
@@ -47,7 +46,6 @@ void handle_percent(int *count)
 }
 /**
  * handle_unknown - handle unknown specifier
- * @args: va_list of arguments
  * @count: pointer to char
  * @modifier: unrecognized modifier character
  */
