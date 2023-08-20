@@ -56,14 +56,9 @@ void handle_unknown(const char modifier, int *count)
 	*count += 2;
 }
 /**
- * handle_decimal - handle the %d and %i specifiers
- * @args: va_list of arguments
- * @count: pointer to char
- */
-/**
- *_printf - function for printf
- *@format:format.
- *Return:count.
+ * _printf - function for printf
+ * @format:format.
+ * Return:count.
  */
 int _printf(const char *format, ...)
 {
