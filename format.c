@@ -76,10 +76,7 @@ int _printf(const char *format, ...)
 			format++;
 
 			if (*format == '\0')
-			{
-				handle_unknown('%', &count);
 				break;
-			}
 			if (*format == ' ')
 				return (-1);
 			if (*format == 'c')
