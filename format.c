@@ -33,6 +33,12 @@ int _printf(const char *format, ...)
 				handle_decimal(args, &count);
 			else if (*format == 'b')
 				handle_binary(args, &count);
+			else if (*format == 'u')
+				handle_unsigned(args, &count);
+			else if (*format == 'o')
+				handle_octal(args, &count);
+			else if (*format == 'x' || *format == 'X')
+				handle_hex(args, &count, (*format == 'X') ? 1 : 0);
 			else
 				handle_unknown(*format, &count);
 		}
