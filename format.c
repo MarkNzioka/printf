@@ -31,6 +31,8 @@ int _printf(const char *format, ...)
 				handle_percent(&count);
 			else if (*format == 'd' || *format == 'i')
 				handle_decimal(args, &count);
+			else if (*format == 'b')
+				handle_binary(args, &count);
 			else
 				handle_unknown(*format, &count);
 		}
