@@ -19,7 +19,6 @@ void handle_decimal(va_list args, int *count)
 	}
 	if (num < 0)
 	{
-		num_digits++;
 		putchar('-');
 		temp_num = -num;
 	}
