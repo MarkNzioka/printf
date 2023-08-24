@@ -39,6 +39,8 @@ int _printf(const char *format, ...)
 				handle_octal(args, &count);
 			else if (*format == 'x' || *format == 'X')
 				handle_hex(args, &count, (*format == 'X') ? 1 : 0);
+			else if (*format == 'p')
+				handle_address(args, &count);
 			else
 				handle_unknown(*format, &count);
 		}
