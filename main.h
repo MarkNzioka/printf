@@ -11,6 +11,7 @@ void handle_string(va_list args, int *count);
 void handle_char(va_list args, int *count);
 void handle_binary(va_list args, int *count);
 void handle_unsigned(va_list args, int *count);
+void handle_address(va_list args, int *count);
 void handle_octal(va_list args, int *count);
 void handle_hex(va_list args, int *count, int uppercase);
 int _printf(const char *format, ...);
