@@ -15,5 +15,6 @@ void handle_address(va_list args, int *count);
 void handle_octal(va_list args, int *count);
 void handle_hex(va_list args, int *count, int uppercase);
 int _printf(const char *format, ...);
+void custom_string(va_list args, int *count);
 #endif
 

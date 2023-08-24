@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdarg.h>
 #include"main.h"
 /**
  * handle_binary - handle the b specifier
@@ -27,30 +29,55 @@ void handle_binary(va_list args, int *count)
 		(*count)++;
 	}
 }
-void _printf(const char *format, ...) {
+
+/**
+ * custom_string - Handles the %S specifier
+ * @args: The va_list containing the arguments
+ * @count: Pointer to the character count
+ */
+void custom_string(va_list args, int *count) {
+    const char *str = va_arg(args, const char *);
+
+    while (*str) {
+        if (*str >= 32 && *str < 127) {
+            putchar(*str);
+            (*count)++;
+        } else {
+            (*count) += 4;
+            putchar('\\');
+            putchar('x');
+            putchar((*str >> 4) < 10 ? (*str >> 4) + '0' : (*str >> 4) - 10 + 'A');
+            putchar((*str & 0x0F) < 10 ? (*str & 0x0F) + '0' : (*str & 0x0F) - 10 + 'A');
+        }
+        str++;
+    }
+}
+
+/**
+ * _printf - Custom printf function
+ * @format: The format string
+ * @...: Additional arguments
+ *
+ * Return: The number of characters printed
+ */
+int _printf(const char *format, ...) {
     va_list args;
+    int count = 0;
+
     va_start(args, format);
 
     while (*format) {
-        const char *str;  
         if (*format == '%' && *(format + 1) == 'S') {
             format += 2;
-            str = va_arg(args, const char *);  
-
-            while (*str) {
-                if (*str >= 32 && *str < 127) {
-                    putchar(*str);
-                } else {
-                    printf("\\x%02X", (unsigned char)*str);
-                }
-                str++;
-            }
+            custom_string(args, &count); 
         } else {
             putchar(*format);
-            format++;
+            count++;
         }
+        format++;
     }
 
     va_end(args);
+    return count;
 }
 
