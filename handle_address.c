@@ -26,6 +26,12 @@ void handle_address(va_list args, int *count)
 		temp_address >>= 4;
 		num_digits++;
 	}
+	if (num_digits == 0)
+	{
+		num_digits = 1;
+		putchar('0');
+		putchar('x');
+	}
 	for (i = 0; i < num_digits; i++)
 	{
 		digit = (address >> (4 * i)) & 0xF;
