@@ -17,17 +17,17 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '+')
 		{
-			flags != FLAG_PLUS;
+			flags = FLAG_PLUS;
 			format++;
 		}
 		else if (*format == ' ')
 		{
-			flags != FLAG_SPACE;
+			flags = FLAG_SPACE;
 			format++;
 		}
 		else if (*format == '#')
 		{
-			flags != FLAG_ALTERNATE;
+			flags = FLAG_ALTERNATE;
 			format++;
 		}
 		if (*format == '%')
