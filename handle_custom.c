@@ -52,32 +52,3 @@ void custom_string(va_list args, int *count) {
         str++;
     }
 }
-
-/**
- * _printf - Custom printf function
- * @format: The format string
- * @...: Additional arguments
- *
- * Return: The number of characters printed
- */
-int _printf(const char *format, ...) {
-    va_list args;
-    int count = 0;
-
-    va_start(args, format);
-
-    while (*format) {
-        if (*format == '%' && *(format + 1) == 'S') {
-            format += 2;
-            custom_string(args, &count); 
-        } else {
-            putchar(*format);
-            count++;
-        }
-        format++;
-    }
-
-    va_end(args);
-    return count;
-}
-
