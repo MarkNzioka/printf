@@ -3,14 +3,31 @@
  * handle_decimal - handle %d and %i specifiers
  * @args: va_list of arguments
  * @count: pointer to character
+ * @flags: check for flags in the code
  */
-void handle_decimal(va_list args, int *count)
+void handle_decimal(va_list args, int *count, int flags)
 {
 	int num = va_arg(args, int);
 	int num_digits = 0, index, i;
 	int temp_num = num;
 	char digits[12];
 
+	if (flags & FLAG_PLUS)
+	{
+		if (num >= 0)
+		{
+			putchar('+');
+			(*count)++;
+		}
+	}
+	else if (flags & FLAG_SPACE)
+	{
+		if (num >= 0)
+		{
+			putchar(' ');
+			(*count)++;
+		}
+	}
 	if (num == 0)
 	{
 		putchar('0');

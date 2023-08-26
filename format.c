@@ -7,7 +7,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int count = 0, flags;
 
 	if (format == NULL)
 		return (-1);
@@ -15,6 +15,21 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
+		if (*format == '+')
+		{
+			flags != FLAG_PLUS;
+			format++;
+		}
+		else if (*format == ' ')
+		{
+			flags != FLAG_SPACE;
+			format++;
+		}
+		else if (*format == '#')
+		{
+			flags != FLAG_ALTERNATE;
+			format++;
+		}
 		if (*format == '%')
 		{
 			format++;

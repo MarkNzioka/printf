@@ -3,15 +3,30 @@
  * handle_hex - handle tje x and X specifiers
  * @args: va_list of arguments
  * @count: pointer to character
+ * @flags: chack for flags
  * @uppercase: determine whether uppercase or lowercase
  */
-void handle_hex(va_list args, int *count, int uppercase)
+void handle_hex(va_list args, int *count, int flags, int uppercase)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	int index, i, remainder, num_digits = 0;
 	unsigned int temp = num;
 	char digits[12];
 
+	if (flags & FLAG_ALTERNATE)
+	{
+		if (uppercase)
+		{
+			putchar('0');
+			putchar('X');
+		}
+		else
+		{
+			putchar('0');
+			putchar('x');
+		}
+		(*count) += 2;
+	}
 	if (num == 0)
 	{
 		putchar('0');
