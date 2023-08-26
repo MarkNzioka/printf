@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 				handle_percent(&count);
 			else if (*format == 'd' || *format == 'i')
-				handle_decimal(args, &count);
+				handle_decimal(args, &count, flags);
 			else if (*format == 'b')
 				handle_binary(args, &count);
 			else if (*format == 'u')
@@ -53,7 +53,7 @@ int _printf(const char *format, ...)
 			else if (*format == 'o')
 				handle_octal(args, &count);
 			else if (*format == 'x' || *format == 'X')
-				handle_hex(args, &count, (*format == 'X') ? 1 : 0);
+				handle_hex(args, &count, flags, (*format == 'X') ? 1 : 0);
 			else if (*format == 'p')
 				handle_address(args, &count);
 			else

@@ -58,16 +58,16 @@ void handle_hex(va_list args, int *count, int flags, int uppercase)
  * @args: va_list of arguments
  * @count: pointer to character
  */
-void handle_lower_hex(va_list args, int *count)
+void handle_lower_hex(va_list args, int *count, int flags)
 {
-	handle_hex(args, count, 0);
+	handle_hex(args, count, flags, 0);
 }
 /**
  * handle_upper_hex - handle upper case
  * @args: va_list of arguments
  * @count: pointer to character
  */
-void handle_upper_hex(va_list args, int *count)
+void handle_upper_hex(va_list args, int *count, int flags)
 {
-	handle_hex(args, count, 1);
+	handle_hex(args, count, flags, 1);
 }
